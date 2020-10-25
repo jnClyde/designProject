@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/js/global.js}"></script>
+    <style>
+        .maintitle{
+            color:#003333
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class="container">
+    <h2 class="maintitle">Selected orders</h2>
+    <p th:text="'Page '+${page.number+1}+' of '+${page.totalPages}"></p>
+    <p>
+        <a th:if="${page.number>0}"  th:href="@{/movies/selected(page=${page.number-1},sort=${sort}+','+${dir},rank=${rank},rank1=${rank1},select=${select})}">Prev</a>
+        <a th:if="${page.number<page.totalPages-1}" th:href="@{/movies/selected(page=${page.number+1},sort=${sort}+','+${dir},rank=${rank},rank1=${rank1},select=${select})}">Next</a>
+
+    </p>
+    <table class="table">
+        <thead>
+        <th>Title</th>
+        <th>Status</th>
+        </thead>
+        <tbody>
+        <tr th:each="order:${page.content}">
+            <td>
+                <a th:href="@{/orders/order(orderId=${order.id})}"
+                   th:text="${order.title}"></a>
+            </td>
+            <td th:if="${order.status<4}" th:text="Deadline + ': '+ ${order.deadline}"></td>
+            <td th:if="${order.status==4}" th:text="Ready + ': rank = ' +${order.rank}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

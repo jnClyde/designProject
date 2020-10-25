@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/js/global.js}"></script>
+    <style>
+        .maintitle{
+            color:#003333
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class="container">
+    <h2 class="maintitle" th:text="#{label.selectorders}">Select order by rank</h2>
+    <form action="#" th:action="@{/orders/select}" method="post">
+        <div class="form-group">
+            <hr>
+            <label for="order-rank">Enter rank value</label>
+            <input id="order-rank" class="form-control" th:name="order-rank"/>
+            <label for="order-rank">Enter second bound</label>
+            <text> of rank value - if necessary </text>
+            <input id="order-rank1" class="form-control" th:name="order-rank1"/>
+        </div>
+        <div class="form-group">
+            <label for="type-select">Choose type of select</label>
+            <select id="type-select" class="form-control" th:name="type-select">
+                <option th:each="typeselect:${typeofselect}"
+                        th:value="${typeselect}"
+                        th:text="${typeselect}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="type-sort">Choose type of sort</label>
+            <select id="type-sort" class="form-control" th:name="type-sort">
+                <option th:each="typesort:${typeofsort}"
+                        th:value="${typesort}"
+                        th:text="${typesort}">
+                </option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All orders</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/js/global.js}"></script>
+
+    <style>
+        .maintitle{
+            color:#003333
+        }
+        .notmain{
+            color:#006666
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class="container">
+    <h2 class="maintitle">Current order</h2>
+    <div>
+        <label class="notmain" for="order-title">Title</label>
+        <p id="order-title" th:text="${order.title}"></p>
+    </div>
+    <div>
+        <label class="notmain" for="order-client">Client</label>
+        <div id="order-client" th:each="client:${order.clients}">
+            <td th:text="'UserName: ' + ${client.username}" ></td>
+        </div>
+        <div class="notmain" id="order-client1" th:each="client:${order.clients}">
+            <td th:text="'Name: ' + ${client.firstName}"></td>
+            <td th:text="${client.lastName}" ></td>
+        </div>
+    </div>
+    <div>
+        <label class="notmain" for="order-status">Status</label>
+        <div id="order-status" >
+            <p th:if="${order.status==0}">Being processed</p>
+            <p th:if="${order.status==1}">In process</p>
+            <p th:if="${order.status==2}">Customer Check</p>
+            <p th:if="${order.status==3}">Editing</p>
+            <p th:if="${order.status==4}">Ready</p>
+            <p th:if="${order.status==-1}">Stop</p>
+        </div>
+    </div>
+    <div>
+        <label class="notmain" for="order-deadline">Deadline</label>
+        <p id="order-deadline" th:text="${order.deadline}"></p>
+    </div>
+    <div>
+        <label class="notmain" for="order-techtask">Technical Task</label>
+        <p id="order-techtask" th:text="${order.techtask}"></p>
+    </div>
+    <div>
+        <label class="notmain" th:if="${order.status==4}" for="order-rank">Rank</label>
+        <p id="order-rank" th:if="${order.status==4}" th:text="${order.rank}"></p>
+    </div>
+</div>
+</body>
+</html>

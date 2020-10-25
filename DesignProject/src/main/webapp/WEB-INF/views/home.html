@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Design</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/js/global.js}"></script>
+    <link rel="stylesheet" th:href="@{/resources/styles/home.css}" />
+
+</head>
+<body>
+
+<section class="hero">
+    <header id="header">
+        <a id="logo" th:href="@{/login}"><img th:src="@{/resources/img/logo1.png}"/></a>
+    </header>
+    <header class="hero-header">
+        <h1 class="hero-title">Design is so simple</h1>
+    </header>
+    <footer class="hero-footer">
+        <a class="button button-primary" th:href="@{/login}">Sign In</a>
+        <a class="button" th:href="@{/register}">Register</a>
+    </footer>
+</section>
+<article>
+    <h2>...That's why it's so complicated.</h2>
+    <p>Digital product design is an iterative design process used to solve a functional problem with a formal solution. A digital product designer identifies an existing problem, offers the best possible solution, and
+    launches it to a market that demonstrates demand for the particular solution. The field is considered a subset of product design. Some digital products have both digital and physical components (such as
+    Nike+ and Fitbit), but the term is mainly used for products produced through software engineering. Since digital product design have become mainstream in the creative industry, a digital product designer
+    oftentimes is simply referred to as a "product designer" in job posts.</p>
+</article>
+</body>
+</html>
+

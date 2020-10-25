@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/js/global.js}"></script>
+
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class="container">
+    <h2 class="text-danger" th:text="#{label.sendmessage}">Send message</h2>
+    <form action="#" th:action="@{/orders/sendmail}" method="post">
+        <div class="form-group">
+            <hr>
+            <label for="mail-client">Enter client username</label>
+            <input id="mail-client" class="form-control" th:name="mail-client"/>
+            <label for="mail-sub">Enter text subject</label>
+            <input id="mail-sub" class="form-control" th:name="mail-sub"/>
+            <label for="mail-txt">Enter text message</label>
+            <input id="mail-txt" class="form-control" th:name="mail-txt"/>
+            <label for="mail-path">Enter file link(if necessary)</label>
+            <input id="mail-path" class="form-control" th:name="mail-path"/>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

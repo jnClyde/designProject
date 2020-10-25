@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        <script th:src="@{/resources/js/global.js}"></script>
+<head>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default" th:fragment="header" >
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/orders/findorder}" class="navbar-brand">Design Project</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/orders/findorder}">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle"
+                   data-toggle="dropdown" role="button"
+                   aria-expanded="false">Menu <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a th:href="@{/orders/findallpages}">Find All</a></li>
+                    <li><a th:href="@{/orders/loadall}">Load All</a></li>
+                    <li><a th:href="@{/orders/selectorders}">Select order</a></li>
+                    <li><a th:href="@{/orders/add}">Add order</a></li>
+                    <li><a th:href="@{/orders/findorder}">Find  by title</a></li>
+                    <li><a th:href="@{/orders/sendForm}">Send message</a></li>
+                </ul>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <p class="navbar-text">
+                    Welcome
+                    <span sec:authentication="name">UUser</span>
+                    <a id="logout" href="#">Logout</a>
+                </p>
+                <form id="logout-form" th:action="@{/logout}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                </form>
+            </li>
+
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Sign In</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/register}">Register</a>
+            </li>
+
+            </li>
+            <li>
+                <a href="?lang=en">en</a>
+            </li>
+            <li>
+                <a href="?lang=ru">ru</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+</html>
